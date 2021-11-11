@@ -6,9 +6,11 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Divider,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { RecordsAccount } from "../Model/records";
+import { RECORD_STRINGS } from "../strings";
 
 interface Props {
   open: boolean;
@@ -30,6 +32,7 @@ export const RecordDialog = (props: Props) => {
   return (
     <Dialog
       open={open}
+      fullWidth
       BackdropProps={{
         classes: {
           root: classes.backDrop,
@@ -38,11 +41,40 @@ export const RecordDialog = (props: Props) => {
       keepMounted
       onClose={handleClose}
     >
-      <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+      <DialogTitle>{record.Name}</DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-slide-description">
-          Let Google help apps determine location. This means sending anonymous
-          location data to Google, even when no apps are running.
+        <DialogContentText component="span" variant="body2">
+          <div>
+            <p>
+              {RECORD_STRINGS.WEBSITE}: {record.Website}
+            </p>
+            <p>
+              {RECORD_STRINGS.ACCOUNT_NUMBER}: {record.AccountNumber}
+            </p>
+            <p>
+              {RECORD_STRINGS.ACCOUNT_REVENUE}: $
+              {record.AnnualRevenue === null ? 0 : record.AnnualRevenue}
+            </p>
+          </div>
+          <Divider />
+          <h4>{RECORD_STRINGS.CONTACTS}</h4>
+          {record.Contacts.records.map((contact) => (
+            <div key={contact.Id}>
+              <p>
+                {RECORD_STRINGS.NAME}: {contact.Name}
+              </p>
+              <p>
+                {RECORD_STRINGS.TITLE}: {contact.Title}
+              </p>
+              <p>
+                {RECORD_STRINGS.DEPARTMENT}: {contact.Department}
+              </p>
+              <p>
+                {RECORD_STRINGS.EMAIL}: {contact.Email}
+              </p>
+              <Divider />
+            </div>
+          ))}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

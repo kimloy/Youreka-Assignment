@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@mui/styles";
 import {
   Button,
   Card,
   CardActions,
   CardContent,
   CardHeader,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   Divider,
   Grid,
   IconButton,
@@ -24,47 +18,8 @@ import { apiResponse } from "../api";
 import { Records } from "./Model/records";
 import { EmptyRecord } from "./Model/emptyRecords";
 import { RecordDialog } from "./components/recordDialog";
-
-const useStyles = makeStyles({
-  recordsSearchBar: {
-    display: "block",
-    marginTop: "5%",
-    textAlign: "center",
-  },
-  recordSearch: {
-    width: "65%",
-  },
-  recordSearchButton: {
-    marginLeft: "1rem",
-    marginTop: ".5rem",
-  },
-  recordsSelect: {
-    width: "30%",
-    marginLeft: "1rem",
-  },
-  recordsGrid: {
-    marginTop: "5%",
-    padding: "0 5%",
-  },
-  recordsCard: {
-    border: "1px solid",
-    padding: "10px",
-    boxShadow: "1px 5px black",
-  },
-  recordsCardActions: {
-    margin: "auto",
-  },
-  backDrop: {
-    backdropFilter: "blur(3px)",
-    backgroundColor: "rgba(0,0,30,0.4)",
-  },
-  recordsUpSell_Yes: {
-    color: "green",
-  },
-  recordsUpsell_Maybe: {
-    color: "#ffeb3b",
-  },
-});
+import { useStyles } from "./styles";
+import { RECORD_STRINGS } from "./strings";
 
 export const RecordsContainer = () => {
   const classes = useStyles();
@@ -147,23 +102,36 @@ export const RecordsContainer = () => {
         handleClose={handleCloseClick}
       />
 
-      <Grid className={classes.recordsGrid} container spacing={2}>
+      <Grid
+        className={classes.recordsGrid}
+        component="span"
+        container
+        spacing={2}
+      >
         {filterRecords.records.map((element, index) => (
           <Grid item key={element.Id} xs={12} md={6} lg={4}>
             <Card className={classes.recordsCard}>
               <CardHeader
                 action={displayPriority(element.UpsellOpportunity__c)}
                 title={element.Name}
-              ></CardHeader>
+              />
               <Divider />
               <CardContent>
-                <Typography variant="body2">
-                  <p>Website: {element.Website}</p>
-                  <p>Account-Number: {element.AccountNumber}</p>
-                  <p>
-                    Annual-Revenue: $
-                    {element.AnnualRevenue === null ? 0 : element.AnnualRevenue}
-                  </p>
+                <Typography component="span" variant="body2">
+                  <div>
+                    <p>
+                      {RECORD_STRINGS.WEBSITE}: {element.Website}
+                    </p>
+                    <p>
+                      {RECORD_STRINGS.ACCOUNT_NUMBER}: {element.AccountNumber}
+                    </p>
+                    <p>
+                      {RECORD_STRINGS.ACCOUNT_REVENUE}: $
+                      {element.AnnualRevenue === null
+                        ? 0
+                        : element.AnnualRevenue}
+                    </p>
+                  </div>
                 </Typography>
               </CardContent>
               <CardActions>
@@ -172,7 +140,7 @@ export const RecordsContainer = () => {
                   onClick={() => handleOpenClick(index)}
                   variant="contained"
                 >
-                  Learn More
+                  {RECORD_STRINGS.LEARN_MORE}
                 </Button>
               </CardActions>
             </Card>
