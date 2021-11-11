@@ -46,14 +46,16 @@ export const RecordDialog = (props: Props) => {
         <DialogContentText component="span" variant="body2">
           <div>
             <p>
-              {RECORD_STRINGS.WEBSITE}: {record.Website}
+              {RECORD_STRINGS.WEBSITE}:{" "}
+              {record.Website ? record.Website : RECORD_STRINGS.NA}
             </p>
             <p>
-              {RECORD_STRINGS.ACCOUNT_NUMBER}: {record.AccountNumber}
+              {RECORD_STRINGS.ACCOUNT_NUMBER}:{" "}
+              {record.AccountNumber ? record.AccountNumber : RECORD_STRINGS.NA}
             </p>
             <p>
-              {RECORD_STRINGS.ACCOUNT_REVENUE}: $
-              {record.AnnualRevenue === null ? 0 : record.AnnualRevenue}
+              {RECORD_STRINGS.ACCOUNT_REVENUE}:{" "}
+              {record.AnnualRevenue ? record.AnnualRevenue : RECORD_STRINGS.NA}
             </p>
           </div>
           <Divider />
@@ -61,16 +63,20 @@ export const RecordDialog = (props: Props) => {
           {record.Contacts.records.map((contact) => (
             <div key={contact.Id}>
               <p>
-                {RECORD_STRINGS.NAME}: {contact.Name}
+                {RECORD_STRINGS.NAME}:{" "}
+                {contact.Name ? contact.Name : RECORD_STRINGS.NA}
               </p>
               <p>
-                {RECORD_STRINGS.TITLE}: {contact.Title}
+                {RECORD_STRINGS.TITLE}:{" "}
+                {contact.Title ? contact.Title : RECORD_STRINGS.NA}
               </p>
               <p>
-                {RECORD_STRINGS.DEPARTMENT}: {contact.Department}
+                {RECORD_STRINGS.DEPARTMENT}:{" "}
+                {contact.Department ? contact.Department : RECORD_STRINGS.NA}
               </p>
               <p>
-                {RECORD_STRINGS.EMAIL}: {contact.Email}
+                {RECORD_STRINGS.EMAIL}:{" "}
+                {contact.Email ? contact.Email : RECORD_STRINGS.NA}
               </p>
               <Divider />
             </div>

@@ -8,4 +8,5 @@ export const RECORD_STRINGS = {
   DEPARTMENT: "Department",
   EMAIL: "Email",
   LEARN_MORE: "Learn More",
+  NA: "N/A",
 };

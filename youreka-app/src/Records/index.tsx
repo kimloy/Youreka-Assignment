@@ -120,16 +120,20 @@ export const RecordsContainer = () => {
                 <Typography component="span" variant="body2">
                   <div>
                     <p>
-                      {RECORD_STRINGS.WEBSITE}: {element.Website}
+                      {RECORD_STRINGS.WEBSITE}:{" "}
+                      {element.Website ? element.Website : RECORD_STRINGS.NA}
                     </p>
                     <p>
-                      {RECORD_STRINGS.ACCOUNT_NUMBER}: {element.AccountNumber}
+                      {RECORD_STRINGS.ACCOUNT_NUMBER}:{" "}
+                      {element.AccountNumber
+                        ? element.AccountNumber
+                        : RECORD_STRINGS.NA}
                     </p>
                     <p>
-                      {RECORD_STRINGS.ACCOUNT_REVENUE}: $
-                      {element.AnnualRevenue === null
-                        ? 0
-                        : element.AnnualRevenue}
+                      {RECORD_STRINGS.ACCOUNT_REVENUE}:{" "}
+                      {element.AnnualRevenue
+                        ? element.AnnualRevenue
+                        : RECORD_STRINGS.NA}
                     </p>
                   </div>
                 </Typography>
