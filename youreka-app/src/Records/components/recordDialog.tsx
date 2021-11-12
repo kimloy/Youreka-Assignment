@@ -47,7 +47,11 @@ export const RecordDialog = (props: Props) => {
           <div>
             <p>
               {RECORD_STRINGS.WEBSITE}:{" "}
-              {record.Website ? record.Website : RECORD_STRINGS.NA}
+              {record.Website ? (
+                <a href={`mailto:${record.Website}`}>{record.Website}</a>
+              ) : (
+                RECORD_STRINGS.NA
+              )}
             </p>
             <p>
               {RECORD_STRINGS.ACCOUNT_NUMBER}:{" "}
@@ -76,7 +80,11 @@ export const RecordDialog = (props: Props) => {
               </p>
               <p>
                 {RECORD_STRINGS.EMAIL}:{" "}
-                {contact.Email ? contact.Email : RECORD_STRINGS.NA}
+                {contact.Email ? (
+                  <a href={`mailto:${contact.Email}`}>{contact.Email}</a>
+                ) : (
+                  RECORD_STRINGS.NA
+                )}
               </p>
               <Divider />
             </div>

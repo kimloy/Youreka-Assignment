@@ -9,6 +9,7 @@ import {
   Grid,
   IconButton,
   InputAdornment,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -59,18 +60,27 @@ export const RecordsContainer = () => {
 
   const displayPriority = (upSellOpportunity: string | null) => {
     const priority =
-      upSellOpportunity === "No" ? null : (
+      upSellOpportunity === null ? null : (
         <div>
-          <IconButton
-            aria-label="settings"
-            className={
+          <Tooltip
+            title={
               upSellOpportunity === "Yes"
-                ? classes.recordsUpSell_Yes
-                : classes.recordsUpsell_Maybe
+                ? "You can upsell to this account"
+                : "You maybe can upsell to this account"
             }
+            placement="top-start"
           >
-            <AttachMoneyIcon />
-          </IconButton>
+            <IconButton
+              aria-label="settings"
+              className={
+                upSellOpportunity === "Yes"
+                  ? classes.recordsUpSell_Yes
+                  : classes.recordsUpsell_Maybe
+              }
+            >
+              <AttachMoneyIcon />
+            </IconButton>
+          </Tooltip>
         </div>
       );
     return priority;
@@ -121,7 +131,11 @@ export const RecordsContainer = () => {
                   <div>
                     <p>
                       {RECORD_STRINGS.WEBSITE}:{" "}
-                      {element.Website ? element.Website : RECORD_STRINGS.NA}
+                      {element.Website ? (
+                        <a>{element.Website}</a>
+                      ) : (
+                        RECORD_STRINGS.NA
+                      )}
                     </p>
                     <p>
                       {RECORD_STRINGS.ACCOUNT_NUMBER}:{" "}
